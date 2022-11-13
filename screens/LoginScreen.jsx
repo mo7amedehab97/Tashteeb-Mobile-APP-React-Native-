@@ -3,7 +3,6 @@ import {
   Text,
   Image,
   SafeAreaView,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
@@ -13,15 +12,14 @@ const Container = styled.SafeAreaView`
   background-color: #1d202f;
   height: 100%;
   display: flex;
-  padding-top: 32px;
+  justify-content: space-evenly;
 `;
 const LogoContainer = styled.View`
-  margin-top: 32px;
   padding-left: 32px;
-  position: relative;
+  flex-direction: row;
+  align-items: center;
 `;
 const ButtonContainer = styled.View`
-  margin-top: 25%;
   justify-content: center;
   align-items: center;
 `;
@@ -42,18 +40,15 @@ const LoginScreen = ({ navigation }) => {
         <Image
           source={require("../assets/repair-tools.png")}
           style={{
-            width: 30,
-            height: 30,
-            position: "absolute",
-            top: "20%",
-            left: "55%",
+            width: 25,
+            height: 25,
+            marginHorizontal: 10,
           }}
           resizeMode="contain"
         />
       </LogoContainer>
       <View
         style={{
-          marginTop: "30%",
           paddingLeft: 32,
         }}
       >
@@ -62,7 +57,6 @@ const LoginScreen = ({ navigation }) => {
             color: "#fff",
             fontFamily: "PoppinsRegular",
             letterSpacing: 2,
-
             fontSize: 44,
           }}
         >
@@ -72,7 +66,6 @@ const LoginScreen = ({ navigation }) => {
           style={{
             color: "#fff",
             letterSpacing: 2,
-
             fontSize: 44,
             fontFamily: "PoppinsRegular",
           }}
@@ -84,14 +77,12 @@ const LoginScreen = ({ navigation }) => {
             color: "#fff",
             fontSize: 44,
             letterSpacing: 2,
-
             fontFamily: "PoppinsRegular",
           }}
         >
           Advanture
         </Text>
       </View>
-
       <ButtonContainer>
         <TouchableOpacity
           onPress={() => navigation.navigate("SignIn")}
@@ -108,7 +99,7 @@ const LoginScreen = ({ navigation }) => {
             style={{
               fontSize: 20,
               fontWeight: "bold",
-              color: "#FFF",
+              color: "#1D202F",
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
             }}
@@ -134,7 +125,7 @@ const LoginScreen = ({ navigation }) => {
             {" "}
             you don't have an account{" "}
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
             <Text
               style={{
                 color: "#ffc400",
