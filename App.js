@@ -7,6 +7,10 @@ import LoginScreen from "./screens/LoginScreen";
 import { useFonts } from "expo-font";
 import SignInScreen from "./screens/SignInScreen";
 import SignUpScreen from "./screens/SignUpScreen";
+import HomeScreen from "./screens/HomeScreen";
+
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 const AppStack = createStackNavigator();
 export default function App() {
@@ -22,23 +26,24 @@ export default function App() {
     return null;
   }
   return (
-    <View
-      style={{
-        width: "100%",
-        height: "100%",
-     
-      }}
-    >
-      <StatusBar backgroundColor="#1D202F" />
-      <NavigationContainer>
-        <AppStack.Navigator screenOptions={{ headerShown: false }}>
-          <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
-          <AppStack.Screen name="Login" component={LoginScreen} />
-          <AppStack.Screen name="SignIn" component={SignInScreen} />
-          <AppStack.Screen name="SignUp" component={SignUpScreen} />
-
-        </AppStack.Navigator>
-      </NavigationContainer>
-    </View>
+    <Provider store={store}>
+      <View
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <StatusBar backgroundColor="#1D202F" />
+        <NavigationContainer>
+          <AppStack.Navigator screenOptions={{ headerShown: false }}>
+            <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
+            <AppStack.Screen name="Login" component={LoginScreen} />
+            <AppStack.Screen name="SignIn" component={SignInScreen} />
+            <AppStack.Screen name="SignUp" component={SignUpScreen} />
+            <AppStack.Screen name="Home" component={HomeScreen} />
+          </AppStack.Navigator>
+        </NavigationContainer>
+      </View>
+    </Provider>
   );
 }

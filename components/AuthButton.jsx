@@ -3,14 +3,14 @@ import React from "react";
 import styled from "styled-components/native";
 
 const AuthButtonContainer = styled.TouchableOpacity`
-  background-color: #EDB820;
+  background-color: #edb820;
   padding: 12px;
   width: 50%;
   border-radius: 25px;
   justify-content: center;
   align-items: center;
 `;
-const AuthButton = ({ name }) => {
+const AuthButton = ({ name, LogInRequest }) => {
   return (
     <View
       style={{
@@ -19,7 +19,7 @@ const AuthButton = ({ name }) => {
         marginTop: "20%",
       }}
     >
-      <AuthButtonContainer>
+      <AuthButtonContainer onPress={LogInRequest}>
         <Text
           style={{
             color: "#fff",
