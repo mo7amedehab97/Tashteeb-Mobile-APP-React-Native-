@@ -10,7 +10,7 @@ const AuthButtonContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
-const AuthButton = ({ name, LogInRequest }) => {
+const AuthButton = ({ name, excuteFuction }) => {
   return (
     <View
       style={{
@@ -19,7 +19,7 @@ const AuthButton = ({ name, LogInRequest }) => {
         marginTop: "20%",
       }}
     >
-      <AuthButtonContainer onPress={LogInRequest}>
+      <AuthButtonContainer onPress={excuteFuction}>
         <Text
           style={{
             color: "#fff",

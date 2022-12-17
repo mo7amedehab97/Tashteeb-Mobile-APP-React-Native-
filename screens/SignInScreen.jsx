@@ -14,7 +14,14 @@ import SignInInput from "../components/SignInInput";
 import AuthButton from "../components/AuthButton";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfo } from "../redux/reducers/auth.js";
-import axios from "axios";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { initializeApp } from "@firebase/app";
+import { firebaseConfig } from "../assets/config/firebase";
+
 const SignInContainer = styled.SafeAreaView`
   width: 100%;
   height: 100%;
@@ -32,6 +39,8 @@ const OtherLinks = styled.View`
 `;
 
 const SignInScreen = ({ navigation }) => {
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -39,22 +48,13 @@ const SignInScreen = ({ navigation }) => {
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
-  const LogInRequest = async () => {
-    try {
-      const res = await axios.post(
-        "https://tash6eeb.herokuapp.com/api/v1/login",
-        userData
-      );
-
-      if (res.status === 200) {
-        dispatch(setUserInfo(res.data));
-        navigation.navigate("Home");
-      } else {
-        console.log("object");
-      }
-    } catch (error) {
-      setError("Request failed");
-    }
+  const LogInRequest = () => {
+    signInWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((userCredintial) => {
+        const { user } = userCredintial;
+navigation.navigate("Home")
+      })
+      .catch((error) => setError(error));
   };
   return (
     <SignInContainer>
@@ -94,7 +94,7 @@ const SignInScreen = ({ navigation }) => {
           {error}
         </Text>
       </View>
-      <AuthButton name="Log In" LogInRequest={LogInRequest} />
+      <AuthButton name="Log In" excuteFuction={LogInRequest} />
 
       <OtherLinks>
         <Text
