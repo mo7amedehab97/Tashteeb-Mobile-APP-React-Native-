@@ -12,13 +12,7 @@ import styled from "styled-components/native";
 import Title from "../components/Title";
 import SignInInput from "../components/SignInInput";
 import AuthButton from "../components/AuthButton";
-import { useDispatch, useSelector } from "react-redux";
-import { setUserInfo } from "../redux/reducers/auth.js";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "@firebase/app";
 import { firebaseConfig } from "../assets/config/firebase";
 
@@ -47,12 +41,12 @@ const SignInScreen = ({ navigation }) => {
   });
   const [error, setError] = useState("");
 
-  const dispatch = useDispatch();
   const LogInRequest = () => {
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredintial) => {
         const { user } = userCredintial;
-navigation.navigate("Home")
+
+        navigation.navigate("Home");
       })
       .catch((error) => setError(error));
   };

@@ -1,6 +1,7 @@
 import Onboarding from "react-native-onboarding-swiper";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { storeObj } from "../assets/config/asyncStoreage";
 
 const Dots = ({ selected }) => {
   let backgroundColor;
@@ -45,7 +46,10 @@ const OnboradingScreen = ({ navigation }) => {
       DoneButtonComponent={Done}
       DotComponent={Dots}
       onSkip={() => navigation.replace("Login")}
-      onDone={() => navigation.navigate("Login")}
+      onDone={() => {
+        storeObj({ isFirstLunch: false }, "firstLunch");
+        navigation.navigate("Login");
+      }}
       pages={[
         {
           backgroundColor: "#1D202F",

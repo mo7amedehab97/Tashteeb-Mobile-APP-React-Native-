@@ -5,9 +5,15 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Title from "../components/Title";
 import SignInInput from "../components/SignInInput";
 import AuthButton from "../components/AuthButton";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { initializeApp } from "@firebase/app";
 import { firebaseConfig } from "../assets/config/firebase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { storeObj } from "../assets/config/asyncStoreage";
 
 const SignUpContainer = styled.SafeAreaView`
   width: 100%;
@@ -27,14 +33,17 @@ const SignUpScreen = ({ navigation }) => {
     password: "",
   });
   const [error, setError] = useState("");
+
   const regiester = () => {
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredintial) => {
         const { user } = userCredintial;
+        storeObj(user, "accessToken");
         navigation.navigate("Home");
       })
       .catch((error) => console.log(error));
   };
+
   return (
     <SignUpContainer>
       <ArrowContainer>
