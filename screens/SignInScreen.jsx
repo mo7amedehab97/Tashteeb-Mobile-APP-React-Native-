@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import styled from "styled-components/native";
 import Title from "../components/Title";
 import SignInInput from "../components/SignInInput";
@@ -54,7 +54,7 @@ const SignInScreen = ({ navigation }) => {
     <SignInContainer>
       <ArrowContainer>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <FontAwesome5 name={"arrow-left"} brand size={24} color="#fff" />
+          <AntDesign name={"arrow-left"} brand size={24} color="#fff" />
         </TouchableOpacity>
       </ArrowContainer>
 

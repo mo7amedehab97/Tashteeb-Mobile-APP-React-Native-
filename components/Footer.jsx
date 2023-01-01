@@ -20,7 +20,7 @@ const Footer = () => {
         paddingVertical: 18,
       }}
     >
-      <Ionicons name={"home-outline"} size={36} color="#fff" />
+      <Ionicons name={"home-outline"} size={36} color="#edb820" />
       <FontAwesome5 name={"store"} size={26} color="#fff" />
       <Ionicons name={"hammer"} size={26} color="#fff" />
     </View>

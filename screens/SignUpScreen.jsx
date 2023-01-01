@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import Title from "../components/Title";
 import SignInInput from "../components/SignInInput";
 import AuthButton from "../components/AuthButton";
@@ -48,7 +48,7 @@ const SignUpScreen = ({ navigation }) => {
     <SignUpContainer>
       <ArrowContainer>
         <TouchableOpacity>
-          <FontAwesome5 name={"arrow-left"} brand size={24} color="#fff" />
+          <AntDesign name={"arrow-left"} brand size={24} color="#fff" />
         </TouchableOpacity>
       </ArrowContainer>
       <Title title="New Account" />

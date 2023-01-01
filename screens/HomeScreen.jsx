@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Title from "../components/Title";
 import Footer from "../components/Footer";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import EngineerCard from "../components/EngineerCard";
 import { fakeProducts, fakeUsers } from "../assets/config/fakeData";
 import ProductCard from "../components/ProductCard";
+import { StatusBar } from "expo-status-bar";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View
       style={{
@@ -18,6 +19,7 @@ const HomeScreen = () => {
         backgroundColor: "#1D202F",
       }}
     >
+      <StatusBar backgroundColor="#1D202F" style="light" />
       <View
         style={{
           marginTop: "15%",
@@ -71,7 +73,7 @@ const HomeScreen = () => {
             width: "100%",
           }}
         />
-        <FontAwesome5
+        <AntDesign
           name={"search"}
           light
           size={16}
@@ -111,7 +113,9 @@ const HomeScreen = () => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={fakeUsers.filter((item) => item.role === "engineer")}
-          renderItem={({ item, index }) => <EngineerCard engInfo={item} />}
+          renderItem={({ item, index }) => (
+            <EngineerCard engInfo={item} navigation={navigation} />
+          )}
         />
       </View>
       <View
@@ -154,7 +158,9 @@ const HomeScreen = () => {
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           data={fakeProducts}
-          renderItem={({ item, index }) => <ProductCard productInfo={item} />}
+          renderItem={({ item, index }) => (
+            <ProductCard productInfo={item} navigation={navigation} />
+          )}
         />
       </View>
       <Footer />

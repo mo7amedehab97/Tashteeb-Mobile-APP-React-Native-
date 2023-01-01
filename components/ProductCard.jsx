@@ -1,14 +1,23 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { Context } from "../Context/Context";
 
-const ProductCard = ({ productInfo: { image, name, price } }) => {
-  //   console.log(productInfo);
+const ProductCard = ({
+  navigation,
+  productInfo: { image, name, price },
+  productInfo,
+}) => {
+  const { setData } = useContext(Context);
   return (
-    <View
+    <TouchableOpacity
       style={{
         marginBottom: 16,
         marginHorizontal: 4,
+      }}
+      onPress={() => {
+        setData(productInfo);
+        navigation.navigate("Details");
       }}
     >
       <Image
@@ -56,7 +65,7 @@ const ProductCard = ({ productInfo: { image, name, price } }) => {
           {price} $
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

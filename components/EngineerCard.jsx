@@ -1,13 +1,15 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import Feather from "react-native-vector-icons/Feather";
 
-const EngineerCard = ({ engInfo: { image, username } }) => {
+const EngineerCard = ({ navigation, engInfo: { image, username } }) => {
   return (
-    <View
+    <TouchableOpacity
       style={{
         marginRight: 16,
       }}
+      onPress={() => navigation.navigate("Details")}
     >
       <Image
         source={{
@@ -21,10 +23,10 @@ const EngineerCard = ({ engInfo: { image, username } }) => {
         }}
         resizeMode={"contain"}
       />
-      <FontAwesome5
-        name={"heart"}
-        size={36}
-        color="#edb820"
+      <Feather
+        name={"message-circle"}
+        size={26}
+        color="#ddd"
         style={{
           position: "absolute",
           right: 24,
@@ -53,7 +55,7 @@ const EngineerCard = ({ engInfo: { image, username } }) => {
           {username}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

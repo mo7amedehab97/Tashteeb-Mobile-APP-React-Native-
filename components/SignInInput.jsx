@@ -1,7 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { useSelector } from "react-redux";
 
 const InputContainer = styled.View`
@@ -19,7 +19,6 @@ const Input = styled.TextInput`
   padding-left: 16px;
 `;
 const SignInInput = ({ placeholder, icon, secureTextEntry, onChangeText }) => {
-  
   const [isFocused, setIsFocused] = useState(true);
   const [isShowed, setIsShowed] = useState(true);
   const changeVisibility = () => {
@@ -37,7 +36,7 @@ const SignInInput = ({ placeholder, icon, secureTextEntry, onChangeText }) => {
         marginBottom: 10,
       }}
     >
-      <FontAwesome5 name={icon} solid size={16} color="#ddd" />
+      <AntDesign name={icon} solid size={16} color="#ddd" />
 
       <Input
         placeholder={placeholder}
@@ -55,7 +54,7 @@ const SignInInput = ({ placeholder, icon, secureTextEntry, onChangeText }) => {
       />
       {placeholder === "Password" ? (
         <TouchableOpacity onPress={changeVisibility}>
-          <FontAwesome5 name={"eye"} solid size={16} color="#ddd" style={{}} />
+          <AntDesign name={"eye"} solid size={16} color="#ddd" style={{}} />
         </TouchableOpacity>
       ) : null}
     </InputContainer>
