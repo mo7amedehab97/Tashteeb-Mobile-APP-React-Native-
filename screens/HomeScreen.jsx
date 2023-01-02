@@ -74,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
           }}
         />
         <AntDesign
-          name={"search"}
+          name={"search1"}
           light
           size={16}
           color="#ddd"
@@ -163,7 +163,7 @@ const HomeScreen = ({ navigation }) => {
           )}
         />
       </View>
-      <Footer />
+      <Footer navigation={navigation} />
     </View>
   );
 };

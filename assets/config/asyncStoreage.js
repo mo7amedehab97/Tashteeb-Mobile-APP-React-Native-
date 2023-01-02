@@ -17,3 +17,24 @@ export const storeObj = async (value, str) => {
     console.log(e);
   }
 };
+
+
+export const addItem = async (obj, name) => {
+  try {
+    const storedItemsString = await AsyncStorage.getItem("cart");
+    let storedItems = [];
+    if (storedItemsString) {
+      storedItems = JSON.parse(storedItemsString);
+    }
+    const existingItem = storedItems.find((item) => item.name === name);
+    if (existingItem) {
+      alert("Item already exists");
+      return;
+    }
+    const newItem = obj;
+    storedItems.push(newItem);
+    await AsyncStorage.setItem("cart", JSON.stringify(storedItems));
+  } catch (error) {
+    console.log(error);
+  }
+};

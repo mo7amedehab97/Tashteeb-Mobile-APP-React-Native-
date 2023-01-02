@@ -16,6 +16,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import getData from "./assets/config/asyncStoreage";
 import DetailsPage from "./screens/DetailsPage";
 import { ContextProvider } from "./Context/Context";
+import EngeineerDetails from "./screens/EngeineerDetails";
+import CartItems from "./screens/CartItems";
 
 const AppStack = createStackNavigator();
 export default function App() {
@@ -66,6 +68,8 @@ export default function App() {
             <AppStack.Navigator screenOptions={{ headerShown: false }}>
               <AppStack.Screen name="Home" component={HomeScreen} />
               <AppStack.Screen name="Details" component={DetailsPage} />
+              <AppStack.Screen name="EngDetails" component={EngeineerDetails} />
+              <AppStack.Screen name="Cart" component={CartItems} />
             </AppStack.Navigator>
           </NavigationContainer>
         ) : (

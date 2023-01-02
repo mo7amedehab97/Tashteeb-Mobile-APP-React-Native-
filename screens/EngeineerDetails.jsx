@@ -1,5 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Feather from "react-native-vector-icons/Feather";
+
 import styled from "styled-components/native";
 import React, { useContext, useState } from "react";
 import { Context } from "../Context/Context";
@@ -10,8 +12,8 @@ const Container = styled.View`
 
 const DetailsPage = ({ navigation }) => {
   const [total, setTotal] = useState(1);
-  const { data } = useContext(Context);
-  console.log(data, "heredfsdfsd");
+  const { engData } = useContext(Context);
+  console.log(engData, "heredfsdfsd");
 
   return (
     <Container>
@@ -33,7 +35,7 @@ const DetailsPage = ({ navigation }) => {
           <AntDesign name={"arrowleft"} light size={24} color="#fff" />
         </TouchableOpacity>
 
-        <AntDesign name={"shoppingcart"} light size={24} color="#fff" />
+        <Feather name={"message-circle"} light size={24} color="#fff" />
       </View>
       <View
         style={{
@@ -42,7 +44,7 @@ const DetailsPage = ({ navigation }) => {
       >
         <Image
           source={{
-            uri: data?.image,
+            uri: engData?.image,
           }}
           resizeMode="contain"
           style={{
@@ -70,49 +72,8 @@ const DetailsPage = ({ navigation }) => {
             letterSpacing: 0.5,
           }}
         >
-          Price: {Math.floor(data?.price * total)}$
+          Hourly Price: {engData?.hourPrice}$
         </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            backgroundColor: "#dddddd4a",
-            paddingHorizontal: 16,
-            paddingVertical: 6,
-            borderRadius: 25,
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              total <= 1 ? setTotal(1) : setTotal(total - 1);
-            }}
-          >
-            <AntDesign name={"minus"} light size={16} color="#edb820" />
-          </TouchableOpacity>
-          <View
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 50,
-              alignItems: "center",
-              justifyContent: "center",
-              marginHorizontal: 8,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "PoppinsBold",
-                color: "#fff",
-              }}
-            >
-              {total}
-            </Text>
-          </View>
-          <TouchableOpacity onPress={() => setTotal(total + 1)}>
-            <AntDesign name={"plus"} light size={16} color="#edb820" />
-          </TouchableOpacity>
-        </View>
       </View>
       <View
         style={{
@@ -129,7 +90,7 @@ const DetailsPage = ({ navigation }) => {
             textTransform: "capitalize",
           }}
         >
-          title htrere
+          {engData?.username}{" "}
         </Text>
         <Text
           style={{
@@ -140,7 +101,7 @@ const DetailsPage = ({ navigation }) => {
             textTransform: "capitalize",
           }}
         >
-          {data.description}
+          {engData.bio}
         </Text>
       </View>
       <View>
@@ -162,7 +123,7 @@ const DetailsPage = ({ navigation }) => {
               borderRadius: 25,
             }}
           >
-            Add To Cart
+            Message {engData?.username}
           </Text>
         </TouchableOpacity>
       </View>

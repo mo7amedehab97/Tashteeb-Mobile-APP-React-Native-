@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-const Footer = () => {
+const Footer = ({navigation}) => {
   return (
     <View
       style={{
@@ -23,6 +23,10 @@ const Footer = () => {
       <Ionicons name={"home-outline"} size={36} color="#edb820" />
       <FontAwesome5 name={"store"} size={26} color="#fff" />
       <Ionicons name={"hammer"} size={26} color="#fff" />
+      <TouchableOpacity onPress={()=> navigation.navigate("Cart")}>
+
+      <Ionicons name={"cart"} size={26} color="#fff" />
+      </TouchableOpacity>
     </View>
   );
 };

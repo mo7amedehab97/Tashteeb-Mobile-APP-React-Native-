@@ -1,15 +1,24 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
+import { Context } from "../Context/Context";
 
-const EngineerCard = ({ navigation, engInfo: { image, username } }) => {
+const EngineerCard = ({
+  navigation,
+  engInfo: { image, username },
+  engInfo,
+}) => {
+  const { setEngData } = useContext(Context);
   return (
     <TouchableOpacity
       style={{
         marginRight: 16,
       }}
-      onPress={() => navigation.navigate("Details")}
+      onPress={() => {
+        setEngData(engInfo);
+        navigation.navigate("EngDetails");
+      }}
     >
       <Image
         source={{

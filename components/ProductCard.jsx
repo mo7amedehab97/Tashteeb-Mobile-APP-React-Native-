@@ -1,14 +1,32 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Context } from "../Context/Context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { addItem } from "../assets/config/asyncStoreage";
 
 const ProductCard = ({
   navigation,
   productInfo: { image, name, price },
   productInfo,
 }) => {
-  const { setData } = useContext(Context);
+  const { setData, cartItems, setCartItems } = useContext(Context);
+
+  useEffect(() => {
+    const getItems = async () => {
+      try {
+        const storedItemsString = await AsyncStorage.getItem("cart");
+        if (storedItemsString) {
+          const storedItems = JSON.parse(storedItemsString);
+          setCartItems(storedItems);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getItems();
+  }, []);
+
   return (
     <TouchableOpacity
       style={{
@@ -41,6 +59,7 @@ const ProductCard = ({
           right: 10,
           top: 8,
         }}
+        onPress={() => addItem(productInfo, productInfo?.name)}
       />
 
       <View
